@@ -1,5 +1,6 @@
 package com.example.specialtiesandworkers.data.network.di
 
+import com.example.specialtiesandworkers.data.network.api.WorkersApi
 import dagger.Module
 import dagger.Provides
 import retrofit2.Retrofit
@@ -22,6 +23,11 @@ class NetworkModule {
             .addConverterFactory(GsonConverterFactory.create())
             .addCallAdapterFactory(RxJava2CallAdapterFactory.create())
             .build()
+    }
+
+    @Provides
+    fun provideWorkersApi(retrofit: Retrofit): WorkersApi {
+        return retrofit.create(WorkersApi::class.java)
     }
 
 }
