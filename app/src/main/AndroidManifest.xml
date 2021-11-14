@@ -4,7 +4,7 @@
     package="com.example.specialtiesandworkers">
 
     <application
-        android:name=".SpecialtiesAndWorkersApp"
+        android:name=".application.SpecialtiesAndWorkersApp"
         android:allowBackup="false"
         android:icon="@mipmap/ic_launcher"
         android:label="@string/app_name"

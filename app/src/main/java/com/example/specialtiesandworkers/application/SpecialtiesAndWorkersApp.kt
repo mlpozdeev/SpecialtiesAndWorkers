@@ -1,4 +1,4 @@
-package com.example.specialtiesandworkers
+package com.example.specialtiesandworkers.application
 
 import android.app.Application
 
