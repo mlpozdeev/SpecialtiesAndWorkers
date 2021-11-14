@@ -7,6 +7,6 @@ import retrofit2.http.GET
 interface WorkersApi {
 
     @GET("./65gb/static/raw/master/testTask.json")
-    fun getWorkers(): Single<WorkerDTO>
+    fun getWorkers(): Single<List<WorkerDTO>>
 
 }

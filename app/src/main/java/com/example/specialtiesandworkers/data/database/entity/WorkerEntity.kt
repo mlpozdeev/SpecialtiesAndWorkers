@@ -10,7 +10,7 @@ import java.util.Date
 data class WorkerEntity(
     @PrimaryKey(autoGenerate = true)
     @ColumnInfo(name = "id")
-    val id: Int,
+    var id: Int = 0,
     @ColumnInfo(name = "f_name")
     val firstName: String,
     @ColumnInfo(name = "l_name")
