@@ -5,7 +5,7 @@ import com.example.specialtiesandworkers.domain.model.Specialty
 import io.reactivex.Single
 import javax.inject.Inject
 
-class GetSpecialtyUseCase @Inject constructor(
+class LoadSpecialtyUseCase @Inject constructor(
         private val workersRepository: WorkersRepository
 ) {
 

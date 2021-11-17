@@ -16,7 +16,7 @@ class SpecialtyConverter {
     }
 
     @TypeConverter
-    fun toSpecialtyList(value: String) {
+    fun toSpecialtyList(value: String): List<Specialty> {
         val gson = Gson()
         val type = object : TypeToken<List<Specialty>>() {}.type
 

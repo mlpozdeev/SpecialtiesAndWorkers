@@ -10,28 +10,31 @@ import io.reactivex.Single
 import javax.inject.Inject
 
 class WorkersRepository @Inject constructor(
-        private val workersApi: WorkersApi,
-        private val db: AppDatabase
+    private val workersApi: WorkersApi,
+    private val db: AppDatabase
 ) {
 
     fun getWorkers(): Single<List<Worker>> {
         return db.workersDao().getWorkers()
-                .onErrorResumeNext { exception ->
-                    if (exception is EmptyResultSetException) {
-                        loadWorkersFromServer()
-                    } else {
-                        Single.error(exception)
-                    }
+            .map { dbWorkers ->
+                dbWorkers.map { it.toWorker() }
+            }
+            .onErrorResumeNext { exception ->
+                if (exception is EmptyResultSetException) {
+                    loadWorkersFromServer()
+                } else {
+                    Single.error(exception)
                 }
+            }
     }
 
     private fun loadWorkersFromServer(): Single<List<Worker>> {
         return workersApi.getWorkers()
-                .flatMap { dtoWorkers ->
-                    val dbWorkers = dtoWorkers.map { it.toWorkerEntity() }
-                    db.workersDao().insertWorkers(dbWorkers)
-                            .toSingle { dbWorkers.map { it.toWorker() } }
-                }
+            .flatMap { dtoWorkers ->
+                val dbWorkers = dtoWorkers.map { it.toWorkerEntity() }
+                db.workersDao().insertWorkers(dbWorkers)
+                    .toSingle { dbWorkers.map { it.toWorker() } }
+            }
     }
 
 }

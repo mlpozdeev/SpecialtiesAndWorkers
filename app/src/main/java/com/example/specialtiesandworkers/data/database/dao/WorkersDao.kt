@@ -15,6 +15,6 @@ interface WorkersDao {
     fun insertWorkers(workers: List<WorkerEntity>): Completable
 
     @Query("SELECT * FROM worker")
-    fun getWorkers(): Single<List<Worker>>
+    fun getWorkers(): Single<List<WorkerEntity>>
 
 }
